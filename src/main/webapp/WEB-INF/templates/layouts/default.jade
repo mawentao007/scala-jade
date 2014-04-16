@@ -1,0 +1,42 @@
+-@ val body:String
+doctype 
+html
+  head
+    meta(charset="utf-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    meta(name="description" content="")
+    meta(name="author" content="")
+
+    link(href="/assets/css/bootstrap.css" rel="stylesheet")
+    link(href="/assets/css/bootstrap-responsive.css" rel="stylesheet")
+    link(href="/assets/css/syntax.css" rel="stylesheet")
+    link(href="/assets/css/scalatra.css" rel="stylesheet")
+      
+  body
+    div(class="navbar navbar-inverse navbar-fixed-top")
+      .navbar-inner
+        .container
+          a(class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse")
+            span(class="icon-bar")
+            span(class="icon-bar")
+            span(class="icon-bar")
+          a(class="brand" href="/") Scalatra Examples
+          div(class="nav-collapse collapse")
+    div(class="container")
+      div(class="content")
+        div(class="page-header")
+          div(class="row")
+            div(class="span3")
+              ul(class="nav nav-list")
+                li 
+                  a(herf="first")  first
+                li 
+                  a(herf="second") second
+                li 
+                  a(herf="third")  third
+            .span9 
+              !=body
+  footer(class="vcard" role="contentinfo")
+    script(type="text/javascript")
+    script(src='/assets/js/jquery.min.js') 
+    script(src='/assets/js/bootstrap.min.js')
