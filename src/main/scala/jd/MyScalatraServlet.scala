@@ -7,12 +7,8 @@ import scala.xml.Node
 class MyScalatraServlet extends JdStack {
 
   get("/") {
-    val body:String = "first blood"
-
-      
-
-
-  }
+      <a href="/t">p</a>
+    }
 
   
 }
