@@ -7,7 +7,7 @@ import scala.xml.Node
 
 class MyScalatraServlet(mongoColl:MongoCollection) extends JdStack {
     
-  post("/"){
+  post("/mongodb"){
     val key = params("key")
     val value = params("value")
     val newObj = MongoDBObject(key -> value)
