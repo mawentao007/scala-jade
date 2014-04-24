@@ -1,7 +1,17 @@
 //定义变量
 -@ val aa:String
-p 
- hello world
-
 //aa的值由外部输入
 !=aa
+
+//{uri("/")} 添加route支持
+form(action={uri("/")} method="POST")
+  p
+    label key
+  p 
+    input(name="key" type="text")
+  p
+    label value
+  p 
+    input(name="value" type="text" )  
+    input(type="submit") 
+

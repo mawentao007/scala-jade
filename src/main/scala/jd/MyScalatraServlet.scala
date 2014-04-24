@@ -11,13 +11,10 @@ class MyScalatraServlet(mongoColl:MongoCollection) extends JdStack {
     val key = params("key")
     val value = params("value")
     val newObj = MongoDBObject(key -> value)
-    mongoColl += newObj
+    mongoColl.insert(newObj)
   }
+  
   get("/") {
-    mongoColl.find()
-    for{x <- mongoColl} yield x
-
-
 //一定记得定义文件类型
     contentType="text/html"
     val kk:String = "<p>first blood</p>"
