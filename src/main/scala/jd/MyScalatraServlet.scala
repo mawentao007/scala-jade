@@ -23,9 +23,13 @@ class MyScalatraServlet(mongoColl:MongoCollection) extends JdStack {
     jade("empty.jade","aa"->kk)
   }
 
-  get("/query/:key/:value"){
-    val q = MongoDBObject(params("key") -> params("value"))
-    for(x <- mongoColl.findOne(q)) yield x
+  get("/query"){
+//    val q = MongoDBObject(params("key") -> params("value"))
+    contentType = "text/html"
+    val allDoc = mongoColl.find()
+  ///wrong!!!!!!
+    for(x <- allDoc) 
+      println(x)
   }
   
 }
