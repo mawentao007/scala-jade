@@ -4,10 +4,25 @@ import com.mongodb.casbah.Imports._
 import org.scalatra._
 import scalate.ScalateSupport
 import scala.xml.Node
+import scala.collection.mutable.ListBuffer
+
 
 class MyScalatraServlet(mongoColl:MongoCollection) extends JdStack {
+
+/*  private def show(x:Option[String]) = x match {
+    case Some(s) => s
+    case None => "No answer"
+  }
+*/
+//  class Message(title:String,content:String,_id:String){
+//    val poemTitle = title
+//    val poemContent = content
+//    val id = _id
+//  }
+
     
   post("/mongodb"){
+    mongoColl.remove(MongoDBObject())
     val key = params("key")
     val value = params("value")
     val newObj = MongoDBObject(key -> value)
@@ -23,13 +38,19 @@ class MyScalatraServlet(mongoColl:MongoCollection) extends JdStack {
     jade("empty.jade","aa"->kk)
   }
 
-  get("/query"){
-//    val q = MongoDBObject(params("key") -> params("value"))
-    contentType = "text/html"
-    val allDoc = mongoColl.find()
-  ///wrong!!!!!!
-    for(x <- allDoc) 
-      println(x)
+
+  get("/:key"){
+        contentType = "text/html"
+        var list = new ListBuffer[List[String]]
+        val allDoc = mongoColl.find()  
+        for (i <- allDoc){
+          val lt = List(i.getOrElse("poemTitle", "???").toString(),
+                                    i.getOrElse("poemContent", "???").toString(),
+                                    i.getAs[ObjectId]("_id") map (_.toString) getOrElse "???")
+          list += lt
+        }
+        jade("content.jade","list" -> list.toList);
   }
   
 }
+
