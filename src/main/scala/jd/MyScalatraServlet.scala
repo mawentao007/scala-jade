@@ -21,11 +21,10 @@ class MyScalatraServlet(mongoColl:MongoCollection) extends JdStack {
 //  }
 
     
-  post("/mongodb"){
-    mongoColl.remove(MongoDBObject())
-    val key = params("key")
-    val value = params("value")
-    val newObj = MongoDBObject(key -> value)
+  post("/edit"){
+    val poemTitle = params("poemTitle")
+    val poemContent = params("poemContent")
+    val newObj = MongoDBObject("poemTitle" -> poemTitle,"poemContent"->poemContent)
     mongoColl.insert(newObj)
   }
   
@@ -44,9 +43,9 @@ class MyScalatraServlet(mongoColl:MongoCollection) extends JdStack {
         var list = new ListBuffer[List[String]]
         val allDoc = mongoColl.find()  
         for (i <- allDoc){
-          val lt = List(i.getOrElse("poemTitle", "???").toString(),
-                                    i.getOrElse("poemContent", "???").toString(),
-                                    i.getAs[ObjectId]("_id") map (_.toString) getOrElse "???")
+          val lt = List(i.getOrElse("poemTitle", "No answer").toString(),
+                                    i.getOrElse("poemContent", "No answer").toString(),
+                                    i.getAs[ObjectId]("_id") map (_.toString) getOrElse "No answer")
           list += lt
         }
         jade("content.jade","list" -> list.toList);

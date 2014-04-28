@@ -4,14 +4,14 @@
 !=aa
 
 //{uri("/")} 添加route支持
-form(action={uri("/mongodb")} method="POST")
+form(action={uri("/edit")} method="POST")
   p
-    label key
+    label 名称
   p 
-    input(name="key" type="text")
+    input(name="poemTitle" type="text")
   p
-    label value
+    label 内容
   p 
-    input(name="value" type="text" )  
+    input(name="poemContent" type="text" )  
     input(type="submit") 
 

@@ -26,7 +26,16 @@ html
       div(class="content")
         div(class="page-header")
           div(class="row")
-            !=body
+            div(class="span3")
+              ul(class="nav nav-list")
+                li 
+                  a(href= {uri("/content")})  first
+                li 
+                  a(href="second") second
+                li 
+                  a(href="third")  third
+            .span9 
+              !=body
   footer(class="vcard" role="contentinfo")
     script(type="text/javascript")
     script(src='/assets/js/jquery.min.js') 

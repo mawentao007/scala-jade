@@ -1,10 +1,17 @@
 -@ val list:List[List[String]]
+//-@ var name:String 
 
 
 
 
 //{uri("/")} 添加route支持
-h1
-   -for(l <- list)
-      li 
-         = l apply 0
+
+.span3
+  ul(class = "nav nav-list")
+    -for(l <- list)
+      -var name = l apply 0
+      -var id = l apply 2
+      li
+        a(href = id) = name
+.span9
+  
