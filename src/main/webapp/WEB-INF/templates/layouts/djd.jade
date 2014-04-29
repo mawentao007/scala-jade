@@ -1,5 +1,4 @@
--@ val body:String
-!!! 
+doctype html
 html
   head
     meta(charset="utf-8")
@@ -8,6 +7,9 @@ html
     meta(name="author" content="")
 
     link(href="/assets/css/bootstrap.css" rel="stylesheet")
+    link(href="/assets/css/bootstrap-responsive.css" rel="stylesheet")
+    link(href="/assets/css/syntax.css" rel="stylesheet")
+    link(href="/assets/css/scalatra.css" rel="stylesheet")
       
   body
     div(class="navbar navbar-default navbar-fixed-top")
@@ -20,10 +22,6 @@ html
           a(class="brand" href="/") Scalatra Examples
           div(class="nav-collapse collapse")
             ul(class = "nav navbar-nav")
-              li
-                a(href = {uri("/")}) 目录
-              li
-                a(href = {uri("/edit")}) 编辑
     div(class="container")
       div(class="content")
         div(class="page-header")

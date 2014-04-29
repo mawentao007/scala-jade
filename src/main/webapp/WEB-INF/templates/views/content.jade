@@ -14,7 +14,7 @@
       -var name = l apply 1
       -var id = l apply 0
       li
-        a(href = {uri("/query/"+id)}) = name
+        a(role="button" class="btn btn-lg btn-link" href = {uri("/query/"+id)}) = name
 .span6
   h1
     =poemTitle
