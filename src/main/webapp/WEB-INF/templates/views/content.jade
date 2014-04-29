@@ -1,4 +1,6 @@
 -@ val list:List[List[String]]
+-@ val poemTitle:String
+-@ val poemContent:String
 //-@ var name:String 
 
 
@@ -9,9 +11,14 @@
 .span3
   ul(class = "nav nav-list")
     -for(l <- list)
-      -var name = l apply 0
-      -var id = l apply 2
+      -var name = l apply 1
+      -var id = l apply 0
       li
-        a(href = id) = name
-.span9
+        a(href = {uri("/query/"+id)}) = name
+.span6
+  h1
+    =poemTitle
+  
+  = poemContent
+  
   
