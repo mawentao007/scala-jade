@@ -40,7 +40,7 @@ class MyScalatraServlet(mongoColl:MongoCollection) extends JdStack {
   get("/") {
 //一定记得定义文件类型
     contentType="text/html"
-    val face:String = "Welcome"
+    val face:String = "欢迎来到古诗词网站"
     jade("index.jade","face"->face)
 //指定view模板和layout，将值赋给view
 //    jade("empty.jade","layout"->"WEB-INF/templates/layouts/default.jade","aa"->kk)
