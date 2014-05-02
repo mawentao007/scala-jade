@@ -19,37 +19,8 @@ class MyScalatraServlet(mongoColl:MongoCollection) extends JdStack {
 //    val poemContent = content
 //    val id = _id
 //  }
+  def getList:List[List[String]]={
 
-    
-  post("/edit"){
-
-    contentType="text/html"
-    val poemTitle = params("poemTitle")
-    val poemContent = params("poemContent")
-    val newObj = MongoDBObject("poemTitle" -> poemTitle,"poemContent"->poemContent)
-    mongoColl.insert(newObj)
-    redirect("/query/null")
-  }
-  
-  get("/edit"){
-    contentType="text/html"
-    jade("edit.jade")
-  }
-
-  
-  get("/") {
-//一定记得定义文件类型
-    contentType="text/html"
-    val face:String = "欢迎来到古诗词网站"
-    jade("index.jade","face"->face)
-//指定view模板和layout，将值赋给view
-//    jade("empty.jade","layout"->"WEB-INF/templates/layouts/default.jade","aa"->kk)
-
-  }
-
-
-  get("/query/:key"){
-        contentType = "text/html"
         var list = new ListBuffer[List[String]]
         val allDoc = mongoColl.find()  
         var pTitle:String = ""
@@ -61,16 +32,57 @@ class MyScalatraServlet(mongoColl:MongoCollection) extends JdStack {
           pTitle = i.getOrElse("poemTitle","No answer").toString()
           val lt = List(pId,pTitle)
           list += lt
-          if(pId == params("key").toString()){
-            poemContent = i.getOrElse("poemContent","No answer").toString()
-            poemTitle = pTitle
-          }
-
-          
         }
-
-        jade("content.jade","list" -> list.toList,"poemContent" -> poemContent,"poemTitle" -> poemTitle);
+        list.toList
   }
+    
+  post("/edit"){
+
+    contentType="text/html"
+    val poemTitle = params("poemTitle")
+    val poemContent = params("poemContent")
+    val newObj = MongoDBObject("poemTitle" -> poemTitle,"poemContent"->poemContent)
+    mongoColl.insert(newObj)
+    redirect("/")
+  }
+
+  get("/edit/:key"){
+    contentType="text/html"
+    mongoColl.remove(MongoDBObject("_id"->new ObjectId(params("key"))))
+    redirect("/")
+
+
+  }
+
+  get("/edit"){
+    contentType="text/html"
+    jade("edit.jade","list"->getList,"viewName"->"edit.jade")
+  }
+
+  
+
+  get("/query/:key"){
+        contentType = "text/html"
+        val poemCol = mongoColl.findOne(MongoDBObject("_id"->new ObjectId(params("key"))))
+        var poemContent:String = ""
+        var poemTitle:String = ""
+        for(col <- poemCol){
+           poemContent = col.getOrElse("poemContent","No answer").toString()
+           poemTitle = col.getOrElse("poemTitle","No answer").toString()
+        }
+        jade("content.jade","list" -> getList,"poemContent" -> poemContent,"poemTitle" -> poemTitle,"poemId"-> params("key"),"viewName"->"content.jade");
+  }
+
+
+  get("/"){
+        contentType = "text/html"
+        jade("titleList","list"->getList,"viewName"->"index.jade")
+
+  }
+
+
+
+
   
 }
 

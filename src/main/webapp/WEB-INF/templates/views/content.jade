@@ -1,6 +1,6 @@
--@ val list:List[List[String]]
 -@ val poemTitle:String
 -@ val poemContent:String
+-@ val poemId:String
 //-@ var name:String 
 
 
@@ -9,16 +9,11 @@
 //{uri("/")} 添加route支持
 
 .span3
-  ul(class = "nav nav-list")
-    -for(l <- list)
-      -var name = l apply 1
-      -var id = l apply 0
-      li
-        a(role="button" class="btn btn-lg btn-link" href = {uri("/query/"+id)}) = name
-.span6
   h1
     =poemTitle
   
   = poemContent
+
+  a(role="button" class="btn btn-link" href ={uri("/edit/"+ poemId)}) 删除
   
   

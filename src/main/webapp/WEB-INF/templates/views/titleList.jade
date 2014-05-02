@@ -1,0 +1,13 @@
+-@ val list:List[List[String]]
+div(class="sidebar-module sidebar-module-inset")
+  h4 about
+  .sidebar-module
+  h4 archives
+  ol.list-unstyled
+    -for(l <- list)
+      -var name = l apply 1
+      -var id = l apply 0
+      li
+        a(role="button" class="btn btn-lg btn-link" href = {uri("/query/"+id)}) = name
+  .sidebar-module
+  h4 else where

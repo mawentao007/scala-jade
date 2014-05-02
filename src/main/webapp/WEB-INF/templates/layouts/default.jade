@@ -1,4 +1,6 @@
 -@ val body:String
+-@ val viewName:String
+
 !!!
 html
   head
@@ -19,8 +21,8 @@ html
     div(class="blog-masthead")
       .container
         .blog-nav
-          a(class = "blog-nav-item" href="") Home
-          a(class = "blog-nav-item" href="") Home
+          a(class = "blog-nav-item" href="/") 首页
+          a(class = "blog-nav-item" href={uri("/edit")}) 添加
           a(class = "blog-nav-item" href="") Home
           a(class = "blog-nav-item" href="") Home
     .container
@@ -31,22 +33,14 @@ html
       .row
         div(class="col-sm-8 blog-main")
           .blog-post
-            h2.blog-post-title   sample blog
-            p.blog-post-meta
+            ={render{viewName}}
           .blog-post
           .blog-post
           ul.paper
 
         div(class="col-sm-3 col-sm-offset-1 blog-sidebar")
-          div(class="sidebar-module sidebar-module-inset")
-            h4 about
-          .sidebar-module
-            h4 archives
-            ol.list-unstyled
-              li adfasdfasfasfaslsdafasfasdf
+          ={render("titleList.jade")}
 
-          .sidebar-module
-            h4 else where
   footer.blog-footer
     p  blog templet
   
