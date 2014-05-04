@@ -12,6 +12,7 @@ html
 
     link(href="/assets/css/bootstrap.min.css" rel="stylesheet")
     link(href="/assets/css/blog.css" rel="stylesheet")
+    link(href="/assets/css/mycss.css" rel="stylesheet")
     style(id="holderjs-style" type="text/css")
     style(id="text/css")
 
@@ -47,4 +48,9 @@ html
   script(type="text/javascript")
   script(src='/assets/js/jquery.min.js') 
   script(src='/assets/js/bootstrap.min.js')
+  script(src='/assets/js/tinymce/tinymce.min.js')
+  :javascript
+    tinymce.init({
+      selector:"textarea"
+    });
   script(src='/assets/js/docs.min.js')

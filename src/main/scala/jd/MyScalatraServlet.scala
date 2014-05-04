@@ -9,16 +9,6 @@ import scala.collection.mutable.ListBuffer
 
 class MyScalatraServlet(mongoColl:MongoCollection) extends JdStack {
 
-/*  private def show(x:Option[String]) = x match {
-    case Some(s) => s
-    case None => "No answer"
-  }
-*/
-//  class Message(title:String,content:String,_id:String){
-//    val poemTitle = title
-//    val poemContent = content
-//    val id = _id
-//  }
   def getList:List[List[String]]={
 
         var list = new ListBuffer[List[String]]
